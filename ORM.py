@@ -7,7 +7,7 @@ Simple ORM, that gives posibility of using CRUD queries within python methods.
 
 """
 
-import MySQLdb  
+import MySQLdb
 
 
 class Driver(object):
@@ -39,7 +39,6 @@ class Driver(object):
 
     def execute_query(self, query):
         """Execute a sql query."""
-        self.connect()
         try:
             # Executing a sql query with execute() method
             self.cursor.execute(query)
@@ -81,6 +80,7 @@ class Driver(object):
         # Use execute_query() method
         self.execute_query(insert_query)
 
+    @decorate_connection
     def select(self, table_name, columns):
         """Read the result of query."""
         select_query = "SELECT %s FROM %s" % ((', ').join(columns), table_name)
@@ -93,7 +93,7 @@ class Driver(object):
             self.select_result = self.cursor.fetchall()
 
             # Return result
-            return self.select_result
+            return select_result
         except:
             # Rollback in case of error
             self.db.rollback()

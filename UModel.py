@@ -51,18 +51,9 @@ if __name__ == '__main__':
 
     User = UserModel()
 
-    print('Creating Table')
-    User.DB.execute_query('DROP TABLE IF EXISTS Test')
-    User.DB.execute_query('CREATE TABLE Test (id INT NOT NULL AUTO_INCREMENT, '
-                          'fullName VARCHAR(100), email VARCHAR(100), '
-                          'password VARCHAR(10), '
-                          'avatar VARCHAR(100), isActive BOOLEAN, '
-                          'role_id INT, PRIMARY KEY(id))')
-
     User.insert_user(('fullName', 'email', 'password', 'avatar',
                      'isActive', 'role_id'), ('Oleg', 'naumleg@urk.net',
                      'Hero', 'Uleshka', 1, 2))
-
 
     User.insert_user(('fullName', 'email', 'password', 'avatar',
                      'isActive', 'role_id'), ('Denis', 'dendendeneg@urk.net',
